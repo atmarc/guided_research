@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e -u
 
-. ../../tutorials/tools/cleaning-tools.sh
+. ../../tools/cleaning-tools.sh
 
 clean_openfoam .
