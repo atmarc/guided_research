@@ -389,6 +389,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/marvosym/umvs.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/marvosym/umvs.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/marvosym/umvs.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
@@ -411,6 +413,9 @@ INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/calculix_convergence_study.png
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/calculix_convergence_study.png
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/calculix_convergence_study.png
+INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/coupled_v2_v3_results.PNG
+INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/coupled_v2_v3_results.PNG
+INPUT /home/marc/tum/guided_research/guided_research_repo/report/resources/coupled_v2_v3_results.PNG
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/main.aux
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/main.out
 INPUT /home/marc/tum/guided_research/guided_research_repo/report/main.out

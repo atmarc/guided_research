@@ -35,9 +35,11 @@
 
 \author[email=marc.amoros@tum.de]{Marc Amorós}
 
-
-\date{}
-
+\date{
+    \small
+    \textbf{Advisor:} M.Sc. Benjamin Rodenberg \\
+    \textbf{Supervisor:} Prof. Dr. Hans-Joachim Bungartz \\
+}
 
 \begin{document}
 
@@ -115,7 +117,44 @@
 
 \section{Coupling the two solvers}
 \begin{itemize}
-    \item 
+    \item Talk about what a FSI is in general. Talk more specifically about the perpendicular flap case study, based on the preCICE tutorials.
+    \item Talk about the automatization of this, using scripts.
+    \item Supported time stepping schemes, difference between v2 and v3.
+\end{itemize}
+\subsection{Simulation parameters}
+    \begin{itemize}
+    \item Talk about the parameters of the two solvers (mainly the same as the previous simulations, except change of openFAOM solver). 
+    \item Mention the possible preCICE parameters (window-size, ...).
+    \end{itemize} 
+
+\subsection{Case study: FSI - perpendicular flap}
+\begin{itemize}
+    \item Comment on Figure \ref{fig:coupled_v2_v3}. Show how First order convergence seems to be working, but higher order performs poorly. This is due to an error on the openFAOM adapter, which only supports Euler timestepping.
+    \item Crank Nikolson needs two evaluations per time step, or reuse buffered data of previous timesteps (what is doing openFAOM, most likely, TODO: check this.).
+    \item Give reasoning why this is not working, give some clues what should be done to actually improve it.
+\end{itemize}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/coupled_v2_v3_results.PNG}
+    \caption{TODO: add title and maybe convergence lines}
+    \label{fig:coupled_v2_v3}
+\end{figure}
+
+
+\section{OpenFOAM Adapter}
+\begin{itemize}
+    \item Maybe explain a bit how it interacts with the solver, quite documented already by \href{https://precice.org/adapter-openfoam-extend.html}{Adapter documentation}, and by \href{https://journal.openfoam.com/index.php/ofj/article/view/88/78}{Article of Gerasimos et al.}.
+    \item Mention what should be fixed, maybe propose a prototype?
+    \item Mention how should be tested, with a fake-fluid setup for example. Then also test with the same setup to see if it is viable.
+\end{itemize}
+
+\section{Conclusions and future work}
+\begin{itemize}
+    \item Talk about the convergence conclusions of each of the solvers. Mention the obtained results with the preCICE couplings.
+    \item Give directions on what to fix of the OpenFOAM adapter, and what to be tested after the fixing implementation.
+     
 \end{itemize}
 
 
