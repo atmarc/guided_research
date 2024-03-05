@@ -27,6 +27,11 @@
 
 % load additional packages
 \usepackage{lipsum}
+\usepackage{csquotes}
+\usepackage[style=numeric-comp,sorting=none]{biblatex}
+\usepackage{graphicx}
+
+\addbibresource{resources/literature.bib}
 
 
 % article metadata
@@ -66,6 +71,21 @@
     \item Talk about the script created to automatize the procedure of running these simulations. 
 \end{itemize}
 
+\begin{equation}
+    \frac{\partial u}{\partial t} = F(u, x, t)
+\end{equation}
+
+\begin{equation}
+    \frac{u_i^{n+1} - u_i^n}{\Delta t} = (1 - \theta) {F_i}^{n}(u, x, t) + \theta {F_i}^{n+1}(u, x, t)
+\end{equation}
+
+\begin{equation}
+    \frac{f_i^{n+1} - f_i^{n}}{\Delta t} = (1 - \theta) \frac{f_{i + 1}^{n} - 2f_{i}^{n} + f_{i - 1}^{n}}{\left( \Delta x \right)^2} + \theta \frac{f_{i + 1}^{n + 1} - 2f_{i}^{n + 1} + f_{i - 1}^{n + 1}}{\left( \Delta x \right)^2}
+\end{equation}
+
+\cite{crank1947practical}
+
+
 \subsection{Solver parameters}
 \begin{itemize}
     \item Talk about the important parameters in the configuration, to obtain accurately enough results, as those where quite time consuming to find. For example, foamToVTK is not accurate enough, and was misleading at the beginning. Also mention the solver used.
@@ -79,7 +99,7 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/convergence_study_N100.PNG}
+    \includegraphics[width=0.5\textwidth]{resources/convergence_study_N100.png}
     \caption{Figure comparing data to the analytical solution of Taylor green vortex.}
     \label{fig:error_x_y}
 \end{figure}
@@ -90,7 +110,7 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/RMSE_study.PNG}
+    \includegraphics[width=0.5\textwidth]{resources/RMSE_study.png}
     \caption{Figure showing spatial error decrease with higher grid definition. TODO: improve this figure, as you computed also with N150.}
     \label{fig:RMSE}
 \end{figure}
@@ -137,7 +157,7 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/coupled_v2_v3_results.PNG}
+    \includegraphics[width=0.5\textwidth]{resources/coupled_v2_v3_results.png}
     \caption{TODO: add title and maybe convergence lines}
     \label{fig:coupled_v2_v3}
 \end{figure}
@@ -154,8 +174,9 @@
 \begin{itemize}
     \item Talk about the convergence conclusions of each of the solvers. Mention the obtained results with the preCICE couplings.
     \item Give directions on what to fix of the OpenFOAM adapter, and what to be tested after the fixing implementation.
-     
+
 \end{itemize}
 
+\printbibliography
 
 \end{document}
