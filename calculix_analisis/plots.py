@@ -69,16 +69,25 @@ def plot_oscilation():
 
 def plot_endtime():
     dts = [
-        0.00005,0.00004, #0.00003, 0.00002, 0.000015, 0.00001,
-        0.0001, 0.00015, 0.0002, 0.0003, 0.0004, 0.0005, 0.0006, 0.0007, 0.0008, 0.0009,
-        0.001, 0.00125, 0.0015, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009,
-        0.01, 0.0125, 0.015, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
-        0.1, 0.125, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
+        # 0.00005,0.00004, #0.00003, 0.00002, 0.000015, 0.00001,
+        # 0.0001, 0.00015, 0.0002, 0.0003, 
+        
+        # 0.0004, 0.0005, 0.0006, 0.0007, 0.0008, 0.0009,
+        # 0.001, 0.00125, 0.0015, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009,
+        # 0.01, 0.0125, 0.015, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
+        # 0.1, 0.125, 0.15, 0.2, 0.3, 0.4, 0.5,
+        
+        # 0.6, 0.7, 0.8, 0.9,
 
-        # 0.0001, 0.0002, 0.0004, 0.0005, 
-        # 0.001, 0.002, 0.004, 0.005, 
-        # 0.01, 0.02, 0.04, 0.05, 
-        # 0.1, 0.2, 0.4, 0.5,
+        ##################################################################3
+
+        # 0.00004, 0.00005,
+        # 0.0001, 0.0002, 
+
+        0.0004, 0.0005, 
+        0.001, 0.002, 0.004, 0.005, 
+        0.01, 0.02, 0.04, 0.05, 
+        0.1, 0.2, 0.5,
     ]
 
     tend = 1
@@ -98,23 +107,25 @@ def plot_endtime():
 
     # plt.plot(dts, diffs)
     plt.plot(dts, diffs, 'x')
+    # plt.plot(dts, top_values, 'x')
     
     import pandas as pd
     df = pd.DataFrame(data={"timestep": dts, "displacement": top_value, "diff with dt=5e-5": diffs})
     df.to_csv("calculix-data.csv", index=False)
 
     # Convergence lines
-    ai, bi = 10, -4
+    ai, bi = 1, -1
     ddt = (dts[ai]/dts[bi])
-    m = 2e-6
-    # plt.plot([dts[ai], dts[bi]], [diffs[bi] * ddt + m,    diffs[bi] + m], '--')
-    plt.plot([dts[ai], dts[bi]], [diffs[bi] * ddt**2 + m, diffs[bi] + m], '--')
+    m = 5e-6
+    plt.plot([dts[ai], dts[bi]], [diffs[bi] * ddt,    diffs[bi]], '--')
+    plt.plot([dts[ai], dts[bi]], [diffs[bi] * ddt**2, diffs[bi]], '--')
 
     plt.xscale("log")
     plt.yscale("log")
     # plt.xticks(dts,dts)
     plt.grid()
     # plt.legend()
+    plt.title("Convergence study of Calculix on perpendicular flap case")
     plt.show()
 
 

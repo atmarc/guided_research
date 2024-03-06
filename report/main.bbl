@@ -53,6 +53,66 @@
       \field{pages}{50\bibrangedash 67}
       \range{pages}{18}
     \endentry
+    \entry{taylor1937mechanism}{article}{}
+      \name{author}{2}{}{%
+        {{hash=afcf5e4a27132f07402e4fc8ca150a6e}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={Geoffrey\bibnamedelima Ingram},
+           giveni={G\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=97e17c59072789d4e69102a38a7cd651}{%
+           family={Green},
+           familyi={G\bibinitperiod},
+           given={Albert\bibnamedelima Edward},
+           giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Royal Society London}%
+      }
+      \strng{namehash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \strng{fullhash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \strng{bibnamehash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \strng{authorbibnamehash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \strng{authornamehash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \strng{authorfullhash}{7bfe9cbd6dc5559c4faab1ab92bfe974}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Royal Society of London. Series A-Mathematical and Physical Sciences}
+      \field{number}{895}
+      \field{title}{Mechanism of the production of small eddies from large ones}
+      \field{volume}{158}
+      \field{year}{1937}
+      \field{pages}{499\bibrangedash 521}
+      \range{pages}{23}
+    \endentry
+    \entry{chorin1968numerical}{article}{}
+      \name{author}{1}{}{%
+        {{hash=09aedb7d00518f00411f27147e3113ea}{%
+           family={Chorin},
+           familyi={C\bibinitperiod},
+           given={Alexandre\bibnamedelima Joel},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{09aedb7d00518f00411f27147e3113ea}
+      \strng{fullhash}{09aedb7d00518f00411f27147e3113ea}
+      \strng{bibnamehash}{09aedb7d00518f00411f27147e3113ea}
+      \strng{authorbibnamehash}{09aedb7d00518f00411f27147e3113ea}
+      \strng{authornamehash}{09aedb7d00518f00411f27147e3113ea}
+      \strng{authorfullhash}{09aedb7d00518f00411f27147e3113ea}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics of computation}
+      \field{number}{104}
+      \field{title}{Numerical solution of the Navier-Stokes equations}
+      \field{volume}{22}
+      \field{year}{1968}
+      \field{pages}{745\bibrangedash 762}
+      \range{pages}{18}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

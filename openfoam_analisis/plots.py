@@ -291,6 +291,7 @@ def plot_MSEs():
 def load_values(dts, N, C, base_path):
     velocities = []
     for dt in dts:
+        print(dt, N, C)
         file_name = Path(base_path) / f'dt{dt}_N{N}_E1_C{C}'
         U = Ofpp.parse_internal_field(str(file_name))
         velocities.append(U.reshape(N, N, 3))
@@ -302,47 +303,44 @@ def plot_abs_error_N50():
     base_path = Path("output")
     dts = [0.00001, 0.00002, 0.00005, 0.0001, 0.0002, 0.0005, 0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5]
     
-    velocities_C1 = load_values(dts, 50, 1, base_path / "Uvels_N50")
-    velocities_C0 = load_values(dts, 50, 0, base_path / "Uvels_N50_C0")
+    velocities_N50_C1 = load_values(dts[3:], 50, 1, base_path / "Uvels_N50")
+    velocities_N50_C0 = load_values(dts[3:], 50, 0, base_path / "Uvels_N50_C0")
     velocities_N100_C1 = load_values(dts[3:], 100, 1, base_path / "Uvels_N100_C1")
     velocities_N100_C0 = load_values(dts[3:], 100, 0, base_path / "Uvels_N100_C0")
     velocities_N150_C1 = load_values(dts[3:], 150, 1, base_path / "Uvels_N150_C1")
     
-    magnitudes_C1 = list(map(velocity_mag, velocities_C1))
-    magnitudes_C0 = list(map(velocity_mag, velocities_C0))
+    magnitudes_N50_C1 = list(map(velocity_mag, velocities_N50_C1))
+    magnitudes_N50_C0 = list(map(velocity_mag, velocities_N50_C0))
     magnitudes_N100_C1 = list(map(velocity_mag, velocities_N100_C1))
     magnitudes_N100_C0 = list(map(velocity_mag, velocities_N100_C0))
     magnitudes_N150_C1 = list(map(velocity_mag, velocities_N150_C1))
 
-    # analytical_sol = taylor_green(t=1, N=50)
-    # sol_mag = velocity_mag(analytical_sol)
-
     x, y = (25, 25)
-    ref_sol = magnitudes_C1[REF_ID][x][y]
-    err_x_y_C1 = [abs(vels[x][y] - ref_sol) for vels in magnitudes_C1]
-    err_x_y_C0 = [abs(vels[x][y] - ref_sol) for vels in magnitudes_C0]
+    err_x_y_N50_C1  = [abs(vels[x][y] - magnitudes_N50_C1[REF_ID][x][y]) for vels in magnitudes_N50_C1]
+    err_x_y_N50_C0  = [abs(vels[x][y] - magnitudes_N50_C0[REF_ID][x][y]) for vels in magnitudes_N50_C0]
     err_x_y_N100_C1 = [abs(vels[50][50] - magnitudes_N100_C1[REF_ID][50][50]) for vels in magnitudes_N100_C1]
-    err_x_y_N100_C0 = [abs(vels[50][50] - magnitudes_N100_C1[REF_ID][50][50]) for vels in magnitudes_N100_C0]
+    err_x_y_N100_C0 = [abs(vels[50][50] - magnitudes_N100_C0[REF_ID][50][50]) for vels in magnitudes_N100_C0]
     err_x_y_N150_C1 = [abs(vels[75][75] - magnitudes_N150_C1[REF_ID][75][75]) for vels in magnitudes_N150_C1]
 
     fig, ax = plt.subplots()
     markers = iter(['o', 's', '^', 'D', 'v', '>', '<', 'p', '*', 'H'])
 
-    ax.plot(dts[3:], err_x_y_C1[3:], next(markers), label="N50", color="orange")
+    ax.plot(dts[4:], err_x_y_N50_C1[1:], next(markers), label="N50", color="orange")
     # ax.plot(dts, err_x_y_C0, next(markers), label="N50 C0")
-    ax.plot(dts[3:], err_x_y_N100_C1, next(markers), label="N100", color="blue")
-    # ax.plot(dts[3:], err_x_y_N100_C0, next(markers), label="N100 C0", color="orange")
-    ax.plot(dts[3:], err_x_y_N150_C1, next(markers), label="N150", color="green")
+    ax.plot(dts[4:], err_x_y_N100_C1[1:], next(markers), label="N100", color="blue")
+    # ax.plot(dts[4:], err_x_y_N100_C0, next(markers), label="N100 C0", color="blue")
+    # ax.plot(dts[4:], err_x_y_N100_C0, next(markers), label="N100 C0", color="orange")
+    ax.plot(dts[4:], err_x_y_N150_C1[1:], next(markers), label="N150", color="green")
 
     # First and second order lines
     # ax.plot([dts[3], dts[-1]], [err_x_y_N100_C0[0], err_x_y_N100_C0[0] * dts[-1]/dts[3]], "--", color="orange")
-    ax.plot([dts[3], dts[-1]], [err_x_y_N100_C1[-1] * (dts[3]/dts[-1])**2, err_x_y_N100_C1[-1]], "--", color="grey", label="2nd ord")
+    ax.plot([dts[4], dts[-1]], [err_x_y_N100_C1[-1] * (dts[4]/dts[-1])**2, err_x_y_N100_C1[-1]], "--", color="grey")
     # ax.plot([dts[3], dts[-1]], [err_x_y_N150_C1[-1] * (dts[3]/dts[-1])**2, err_x_y_N150_C1[-1]], "--", color="green")
 
     # Plot parameters 
     ax.set_xscale('log')
     ax.set_yscale('log')
-    ax.set_xticks(dts[3:])
+    # ax.set_xticks(dts[3:])
     plt.xlabel("$\\Delta t$")
     plt.ylabel("$|\\tilde{u} - u|$")
     plt.legend()
@@ -352,7 +350,7 @@ def plot_abs_error_N50():
 
     return {
         "dt": dts,
-        "diff-N50": err_x_y_C1,
+        "diff-N50":  err_x_y_N50_C1,
         "diff-N100": err_x_y_N100_C1 + ['-', '-', '-'],
         "diff-N150": err_x_y_N150_C1 + ['-', '-', '-'],
     }
@@ -361,8 +359,8 @@ def plot_MSEs_N50():
     base_path = Path("output")
     dts = [0.00001, 0.00002, 0.00005, 0.0001, 0.0002, 0.0005, 0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5]
     
-    velocities_C1 = load_values(dts, 50, 1, base_path / "Uvels_N50")
-    velocities_C0 = load_values(dts, 50, 0, base_path / "Uvels_N50_C0")
+    velocities_C1 = load_values(dts[3:], 50, 1, base_path / "Uvels_N50")
+    velocities_C0 = load_values(dts[3:], 50, 0, base_path / "Uvels_N50_C0")
     velocities_N100_C1 = load_values(dts[3:], 100, 1, base_path / "Uvels_N100_C1")
     velocities_N100_C0 = load_values(dts[3:], 100, 0, base_path / "Uvels_N100_C0")
     velocities_N150_C1 = load_values(dts[3:], 150, 1, base_path / "Uvels_N150_C1")
@@ -400,12 +398,12 @@ def plot_MSEs_N50():
     dt_diff = dts[9]/dts[-1]
     ax.plot([dts[9], dts[-1]], [MSE_C1[-1] * dt_diff**2, MSE_C1[-1]], "--", color="grey")
 
-    ax.plot([dts[0], dts[-1]], [MSE_C1[3], MSE_C1[3]], "--", color="orange")
-    ax.plot([dts[0], dts[-1]], [MSE_N100_C1[0], MSE_N100_C1[0]], "--", color="blue")
-    ax.plot([dts[0], dts[-1]], [MSE_N150_C1[0], MSE_N150_C1[0]], "--", color="green")
+    ax.plot([dts[3], dts[-5]], [MSE_C1[3], MSE_C1[3]], "--", color="orange")
+    ax.plot([dts[3], dts[-5]], [MSE_N100_C1[0], MSE_N100_C1[0]], "--", color="blue")
+    ax.plot([dts[3], dts[-5]], [MSE_N150_C1[0], MSE_N150_C1[0]], "--", color="green")
 
 
-    ax.plot(dts, MSE_C1, next(markers), label="N50", color="orange")
+    ax.plot(dts[3:], MSE_C1, next(markers), label="N50", color="orange")
     # ax.plot(dts, MSE_C0, next(markers), label="N50 C0")
     ax.plot(dts[3:], MSE_N100_C1, next(markers), label="N100", color="blue")
     # ax.plot(dts[3:], MSE_N100_C0, next(markers), label="N100 C0")
@@ -415,7 +413,6 @@ def plot_MSEs_N50():
     # Plot parameters 
     ax.set_xscale('log')
     ax.set_yscale('log')
-    ax.set_xticks(dts)
     plt.xlabel("$\Delta t$")
     plt.ylabel("$RMSE$")
     plt.legend()
@@ -433,14 +430,13 @@ def plot_MSEs_N50():
 REF_ID = 0
 
 if __name__ == "__main__":
-    data1 = plot_abs_error_N50()
-    data2 = plot_MSEs_N50()
-    data = {**data1, **data2}
+    # data1 = plot_abs_error_N50()
+    # data2 = plot_MSEs_N50()
+    # data = {**data1, **data2}
     
-    print(data)
-
-    df = pd.DataFrame(data=data)
-    df.to_csv("openfoam-data.csv", index=False)
+    # df = pd.DataFrame(data=data)
+    # df.to_csv("openfoam-data.csv", index=False)
 
     # plot_abs_error_N50()
-    # plot_compare_errors_N100_N150()
+
+    plot_MSEs_N50()
