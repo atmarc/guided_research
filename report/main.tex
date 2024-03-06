@@ -48,13 +48,11 @@
 
 
 \section{OpenFOAM}
-\begin{itemize}
-    \item Small introduction to OpenFOAM.
-    \item Explain time stepping schemes available in the solver, and their orders. Mainly talk about Euler method, and Crank Nikolson, as they are the two cases we used.
-    \item Talk about the script created to automatize the procedure of running these simulations. 
-\end{itemize}
 
-OpenFOAM is an open-source computational fluid dynamics (CFD) software package widely used for simulating and analyzing complex fluid flow problems. Its solver modules employ finite volume methods to numerically solve the Navier-Stokes equations, making it a versatile tool for simulating fluid dynamics in various engineering and scientific applications. In this solver we can find various time stepping schemes, and we focused in two for our analysis. The first one is the Euler implicit scheme, as is usually the default one. Given the following partial differential equation:
+OpenFOAM is an open-source computational fluid dynamics (CFD) software package widely used for simulating and analyzing complex fluid flow problems. Its solver modules employ finite volume methods to numerically solve the Navier-Stokes equations, making it a versatile tool for simulating fluid dynamics in various engineering and scientific applications. In this section we will explain the convergence analysis performed to verify that it has a higher order convergence in time.   
+
+\subsection{Time stepping schemes}
+This solver offers various time stepping schemes, and we focused in two for our analysis. The first one is the Euler implicit scheme, as is usually the default one. Given the following partial differential equation:
 
 \begin{equation}
     \frac{\partial u}{\partial t} = F(u, x, t)
@@ -90,9 +88,9 @@ OpenFOAM uses a sligtly different version of this method, by introducing a blend
     \item Talk about the important parameters in the configuration, to obtain accurately enough results, as those where quite time consuming to find. For example, foamToVTK is not accurate enough, and was misleading at the beginning. Also mention the solver used.
 \end{itemize}
 
-\subsection{Case study: Taylor–Green vortex}
+\subsection{Convergence study}
 
-To study the convergence behaviour of the OpenFOAM, we focused on the Taylor-Green vortex \cite{taylor1937mechanism, chorin1968numerical}, a standard setup in CFD for the validation of fluid flow solvers, given that an analytical solution of the case is known. In a 2D, this solution can be obtained by the formulas:
+To study the convergence behaviour of OpenFOAM, we focused on the Taylor-Green vortex \cite{taylor1937mechanism, chorin1968numerical}, a standard setup in CFD for the validation of fluid flow solvers, given that an analytical solution of the case is known. In a 2D, this solution can be obtained by the formulas:
 \begin{align}
     &u(x, y, t) = -\cos(x) \sin(y) e^{-2\nu t} \\
     &v(x, y, t) = \sin(x) \cos(y) e^{-2\nu t} \\
@@ -117,7 +115,7 @@ In a simulation, there are several elements that contribute to the error $\varep
       \caption{}
       \label{fig:RMSE_openfoam}
     \end{subfigure}
-    \caption{Caption for both figures}
+    \caption{TODO: Caption for both figures}
     \label{fig:figures}
   \end{figure}
   
@@ -138,22 +136,32 @@ This is being plotted in Figure \ref{fig:RMSE_openfoam}, where once again we can
 \section{Calculix}
 \begin{itemize}
     \item Small introduction to Calculix.
-    \subsection{Solver parameters}
-    \item Talk about the supported time stepping scheme (only one, but higher order). In this case the parametrization is quite simpler, so I would also summarize it here.
     
-    \subsection{Case study: perpendicular flap}
-    \item Talk about the simulation that we performed, a perpendicular flap versus a constant force.
-    \item Mention the scripts created to automatize this task, and to obtain the tip point value from the results.
-    \item Comment on Figure \ref{fig:calculix_convergence}, that shows a higher order (between 1 and 2) of convergence. Mention how we compute the error, and how for values <1e-4 the outputed value is the same, meaning either that for lower timesteps the spatial discretization error governs, or that the solver can't achieve better accuracy bc of how values are stored (max of 6 decimal values, more likely given that the results are the exact same). 
-    
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=0.5\textwidth]{resources/calculix_convergence_study.png}
-        \caption{TODO: improve this figure, by adding legend and nicer colors.}
-        \label{fig:calculix_convergence}
-    \end{figure}
-
 \end{itemize}
+
+\subsection{Time stepping scheme}
+\begin{itemize}
+    \item Talk about the supported time stepping scheme (only one, but higher order). In this case the parametrization is quite simpler, so I would also summarize it here.
+\end{itemize}
+
+The only time-stepping scheme implemented in Calculix is the $\alpha$-method \cite{dhondt2017calculix, dhondt2004finite}.
+
+
+    
+\subsection{Case study: perpendicular flap}
+\begin{itemize}
+\item Talk about the simulation that we performed, a perpendicular flap versus a constant force.
+\item Mention the scripts created to automatize this task, and to obtain the tip point value from the results.
+\item Comment on Figure \ref{fig:calculix_convergence}, that shows a higher order (between 1 and 2) of convergence. Mention how we compute the error, and how for values <1e-4 the outputed value is the same, meaning either that for lower timesteps the spatial discretization error governs, or that the solver can't achieve better accuracy bc of how values are stored (max of 6 decimal values, more likely given that the results are the exact same). 
+\end{itemize}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/calculix_convergence_study.png}
+    \caption{TODO: improve this figure, by adding legend and nicer colors.}
+    \label{fig:calculix_convergence}
+\end{figure}
+
 
 \section{Coupling the two solvers}
 \begin{itemize}

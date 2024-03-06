@@ -1,0 +1,17 @@
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
+[0] Config.pm:307> INFO - Logfile is 'main.blg'
+[32] biber:322> INFO - === Wed Mar  6, 2024, 17:14:11
+[38] Biber.pm:415> INFO - Reading 'main.bcf'
+[64] Biber.pm:943> INFO - Found 5 citekeys in bib section 0
+[69] Biber.pm:4256> INFO - Processing section 0
+[70] Utils.pm:75> INFO - Globbing data source 'resources/literature.bib'
+[70] Utils.pm:91> INFO - Globbed data source 'resources/literature.bib' to resources/literature.bib
+[74] Biber.pm:4455> INFO - Looking for bibtex format file 'resources/literature.bib' for section 0
+[75] bibtex.pm:1653> INFO - LaTeX decoding ...
+[77] bibtex.pm:1471> INFO - Found BibTeX data source 'resources/literature.bib'
+[106] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[106] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[106] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[106] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[108] bbl.pm:652> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[109] bbl.pm:755> INFO - Output to main.bbl

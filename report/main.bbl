@@ -113,6 +113,55 @@
       \field{pages}{745\bibrangedash 762}
       \range{pages}{18}
     \endentry
+    \entry{dhondt2017calculix}{article}{}
+      \name{author}{1}{}{%
+        {{hash=297e7e8dbbe6b33dccaa81a119901510}{%
+           family={Dhondt},
+           familyi={D\bibinitperiod},
+           given={Guido},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{fullhash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{bibnamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authorbibnamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authornamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authorfullhash}{297e7e8dbbe6b33dccaa81a119901510}
+      \field{extraname}{1}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Calculix crunchix user’s manual version 2.12}
+      \field{year}{2023}
+      \field{pages}{300}
+      \range{pages}{1}
+    \endentry
+    \entry{dhondt2004finite}{book}{}
+      \name{author}{1}{}{%
+        {{hash=297e7e8dbbe6b33dccaa81a119901510}{%
+           family={Dhondt},
+           familyi={D\bibinitperiod},
+           given={Guido},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{fullhash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{bibnamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authorbibnamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authornamehash}{297e7e8dbbe6b33dccaa81a119901510}
+      \strng{authorfullhash}{297e7e8dbbe6b33dccaa81a119901510}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The finite element method for three-dimensional thermomechanical applications}
+      \field{year}{2004}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
