@@ -43,14 +43,14 @@
   <m2n:sockets acceptor="Fluid" connector="Solid" exchange-directory=".." />
 
   <coupling-scheme:parallel-implicit>
-    <time-window-size value="4e-05" />
+    <time-window-size value="0.05" />
     <max-time value="1" />
     <participants first="Fluid" second="Solid" />
     <exchange data="Force" mesh="Solid-Mesh" from="Fluid" to="Solid" />
     <exchange data="Displacement" mesh="Solid-Mesh" from="Solid" to="Fluid" />
-    <max-iterations value="50" />
-    <relative-convergence-measure limit="5e-3" data="Displacement" mesh="Solid-Mesh" />
-    <relative-convergence-measure limit="5e-3" data="Force" mesh="Solid-Mesh" />
+    <max-iterations value="100" />
+    <absolute-convergence-measure limit="1e-6" data="Displacement" mesh="Solid-Mesh" />
+    <absolute-convergence-measure limit="1e-6" data="Force" mesh="Solid-Mesh" />
     <acceleration:IQN-ILS>
       <data name="Displacement" mesh="Solid-Mesh" />
       <data name="Force" mesh="Solid-Mesh" />

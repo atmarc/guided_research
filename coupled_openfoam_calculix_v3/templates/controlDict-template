@@ -37,6 +37,8 @@ timeFormat      general;
 
 timePrecision   14;
 
+runTimeModifiable false;
+
 functions
 {
     preCICE_Adapter

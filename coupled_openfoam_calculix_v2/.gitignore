@@ -12,6 +12,7 @@ solid-calculix/flap.cvg
 solid-calculix/flap.dat
 solid-calculix/flap.frd
 solid-calculix/flap.sta
+solid-calculix/flap.pvd
 solid-calculix/precice-Solid-convergence.log
 solid-calculix/precice-Solid-iterations.log
 solid-calculix/precice-Solid-watchpoint-Flap-Tip.log
