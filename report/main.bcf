@@ -2186,7 +2186,7 @@
     <bcf:citekey order="2">taylor1937mechanism</bcf:citekey>
     <bcf:citekey order="2">chorin1968numerical</bcf:citekey>
     <bcf:citekey order="3">dhondt2017calculix</bcf:citekey>
-    <bcf:citekey order="3">dhondt2004finite</bcf:citekey>
+    <bcf:citekey order="4">dhondt2004finite</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

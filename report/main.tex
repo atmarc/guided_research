@@ -57,13 +57,11 @@ This solver offers various time stepping schemes, and we focused in two for our 
 \begin{equation}
     \frac{\partial u}{\partial t} = F(u, x, t)
 \end{equation}
-
 The Euler implicit scheme would discretize it as follows:
 
 \begin{equation}
     \frac{u_i^{n+1} - u_i^n}{\Delta t} = {F_i}^{n+1}(u, x, t)
 \end{equation}
-
 This is a first order method, that is quite stable, reason why it is usually the default choice. For the purpouse of this study, we also chose a second order scheme, this being the Crank Nikolson method \cite{crank1947practical}. This scheme is a combination of an explicit and an implicit Euler step, leading to a second order convergence in time. This method would discretize the previous PDE as: 
 
 \begin{equation}
@@ -140,14 +138,37 @@ This is being plotted in Figure \ref{fig:RMSE_openfoam}, where once again we can
 \end{itemize}
 
 \subsection{Time stepping scheme}
-\begin{itemize}
-    \item Talk about the supported time stepping scheme (only one, but higher order). In this case the parametrization is quite simpler, so I would also summarize it here.
-\end{itemize}
+The only time-stepping scheme implemented in Calculix is the $\alpha$-method \cite{dhondt2017calculix}. The solver allows the user to select between a implicit or an explicit version of it, and allows to control the $\alpha$ parameter. Moreover, one can define a fixed timestep size, using the DIRECT clause. Now we will go through a brief overview of this method.
 
-The only time-stepping scheme implemented in Calculix is the $\alpha$-method \cite{dhondt2017calculix, dhondt2004finite}.
+Given a material point with displacement $\boldsymbol{u}$, velocity $\boldsymbol{v}$ and acceleration $\boldsymbol{a}$, we know that the acceleration and velocity are related as such $\boldsymbol{a} = \dot{\boldsymbol{v}}$. This yields to the following formula to obtain the next timestep values:
+\begin{equation}
+    \boldsymbol{v}_{n+1} = \boldsymbol{v}_n + \int_{t_n}^{t_{n+1}} \boldsymbol{a(\xi)} \text{d}\xi
+\end{equation}
+The integral on the right-hand side can be aproximated by a linear combination of $ \boldsymbol{a}_n$ and $\boldsymbol{a}_{n+1}$:
+\begin{gather}
+    \boldsymbol{a}(\xi) \approx  (1 - \gamma) \boldsymbol{a}_n + \gamma \boldsymbol{a}_{n+1}\\
+    \boldsymbol{v}_{n+1} = \boldsymbol{v}_n + \Delta t \left[ (1 - \gamma) \boldsymbol{a}_n + \gamma \boldsymbol{a}_{n+1} \right]
+\end{gather} 
+A similar reasoning can be applied to $\boldsymbol{u}$, as $\boldsymbol{\dot{u}} = \boldsymbol{v}$, hence:
+\begin{equation}
+    \boldsymbol{u}_{n+1} 
+    = \boldsymbol{u}_n + \int_{t_n}^{t_{n+1}} \boldsymbol{v(\eta)}  \text{d}\eta 
+    = \boldsymbol{u}_n + \Delta t \boldsymbol{v}_n + \int_{t_n}^{t_{n+1}} \int_{t_n}^{\eta} \boldsymbol{a(\xi)} \text{d}\xi \text{d}\eta 
+\end{equation}
+Assuming again that we can approximate $\boldsymbol{a}$ by a linear convination of $ \boldsymbol{a}_n$ and $\boldsymbol{a}_{n+1}$ in the interval $\left[ t_n, t_{n+1} \right]$, we can compute the new displacement $\boldsymbol{u}_{n+1}$ as:
+\begin{gather}
+    \boldsymbol{a}(\xi) \approx  (1 - 2\beta) \boldsymbol{a}_n + 2\beta \boldsymbol{a}_{n+1}\\
+    \boldsymbol{u}_{n+1} = \boldsymbol{u}_n + \Delta t \boldsymbol{v}_n
+    + \frac{1}{2} (\Delta t)^2 \left[ (1 - 2\beta) \boldsymbol{a}_n + 2\beta \boldsymbol{a}_{n+1} \right]
+\end{gather} 
+Notice how the linear combinations can be different, so $2\beta = \gamma$. This is the basic setup of the $\alpha$-method, which is proven to be second-order accurate and unconditionally stable for $\alpha \in [-1/3, 0]$, if $\gamma$ and $\beta$ satisy that \cite{dhondt2004finite}:
 
+\begin{align}
+    \beta &= \frac{1}{4}(1 - \alpha)^2 \\
+    \gamma &= \frac{1}{2} - \alpha
+\end{align}
+This $\alpha$ parameter controls the high frequency dissipation, and in Calculix the value set by default is $\alpha=-0.05$.
 
-    
 \subsection{Case study: perpendicular flap}
 \begin{itemize}
 \item Talk about the simulation that we performed, a perpendicular flap versus a constant force.
@@ -171,7 +192,7 @@ The only time-stepping scheme implemented in Calculix is the $\alpha$-method \ci
 \end{itemize}
 \subsection{Simulation parameters}
     \begin{itemize}
-    \item Talk about the parameters of the two solvers (mainly the same as the previous simulations, except change of openFAOM solver). 
+    \item Talk about the parameters of the two solvers (mainly the same as the previous simulations, except change of openFOAM solver). 
     \item Mention the possible preCICE parameters (window-size, ...).
     \end{itemize} 
 
