@@ -9,7 +9,7 @@
 *SOLID SECTION, Elset=Eall, Material=EL
 *STEP, INC=1000000
 *DYNAMIC, ALPHA=0.0, DIRECT
-4e-05, 1
+0.05, 1
 *BOUNDARY
 Nfix1, 1, 3
 *BOUNDARY
@@ -18,7 +18,7 @@ Nall, 3
  Nsurface, 1, 0.0
  Nsurface, 2, 0.0
  Nsurface, 3, 0.0
-*NODE FILE, FREQUENCY=2500
+*NODE FILE, FREQUENCY=2
  U
 *EL FILE
  S, E
