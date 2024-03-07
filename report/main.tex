@@ -44,6 +44,7 @@
     \item Talk somehow about higer timestepping schemes, and why/when is good to use them. Should you use a higher order timestepping scheme if it doesn't give good results? (No bc it is slower) 
     \item Say why we chose this two open source solvers.
     \item Explain difference between preCICEv2 and preCICEv3.
+    \item All the code accessible at repo: \url{https://github.com/atmarc/guided_research/}.
 \end{itemize}
 
 
@@ -161,7 +162,7 @@ Assuming again that we can approximate $\boldsymbol{a}$ by a linear convination 
     \boldsymbol{u}_{n+1} = \boldsymbol{u}_n + \Delta t \boldsymbol{v}_n
     + \frac{1}{2} (\Delta t)^2 \left[ (1 - 2\beta) \boldsymbol{a}_n + 2\beta \boldsymbol{a}_{n+1} \right]
 \end{gather} 
-Notice how the linear combinations can be different, so $2\beta = \gamma$. This is the basic setup of the $\alpha$-method, which is proven to be second-order accurate and unconditionally stable for $\alpha \in [-1/3, 0]$, if $\gamma$ and $\beta$ satisy that \cite{dhondt2004finite}:
+Notice how the linear combinations can be different, so $2\beta \neq \gamma$. This is the basic setup of the $\alpha$-method, which is proven to be second-order accurate and unconditionally stable for $\alpha \in [-1/3, 0]$, if $\gamma$ and $\beta$ satisy that \cite{dhondt2004finite}:
 
 \begin{align}
     \beta &= \frac{1}{4}(1 - \alpha)^2 \\
@@ -209,6 +210,15 @@ This $\alpha$ parameter controls the high frequency dissipation, and in Calculix
     \includegraphics[width=0.5\textwidth]{resources/coupled_v2_v3_results.png}
     \caption{TODO: add title and maybe convergence lines}
     \label{fig:coupled_v2_v3}
+\end{figure}
+
+\section{Fake Fluid}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/fake_fluid.png}
+    \caption{TODO: }
+    \label{fig:fake-fluid}
 \end{figure}
 
 
