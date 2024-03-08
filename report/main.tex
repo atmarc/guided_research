@@ -121,7 +121,7 @@ In a simulation, there are several elements that contribute to the error $\varep
 
 
 There are several possible approaches to study the error. Our strategy was to choose a position cell $(i,j)$ and compare the values of the cell in this position for the different samples. We define as the reference sample $\tilde{u}$, obtained by running the simulation with a $\Delta t = 10^{-5}$. 
-We computed the absolute difference between every sample and the chosen reference solution $|u - \tilde{u}|$ and we plotted them in Figure \ref{fig:convergence_openfoam}, for three different grid sizes. As we assumed that $\varepsilon_{\Delta x}$ is constant among the samples with the same grid size, in this plot we obtain $\varepsilon_{\Delta t} + \varepsilon_\text{num}$, allowing us to extract conclusions form the convergence behaviour of $\varepsilon_{\Delta t}$. We can observe how the error decreases when the timestep gets smaller, proportionally to $\text{O}(\Delta t^2)$, until a point where the error flattens. Our assumption is that this happens when $\varepsilon_{\Delta t} < \varepsilon_\text{num}$, and after a certain point this $\varepsilon_\text{num}$ dominates the entire error. It is also remarkable to see how this point of flattening happens on smaller timesteps for increasing resolutions of the domain.
+We computed the absolute difference between every sample and the chosen reference solution $|u - \tilde{u}|$ and we plotted them in Figure \ref{fig:convergence_openfoam}, for three different grid sizes. As we assumed that $\varepsilon_{\Delta x}$ is constant among the samples with the same grid size, in this plot we obtain $\varepsilon_{\Delta t} + \varepsilon_\text{num}$, allowing us to extract conclusions form the convergence behaviour of $\varepsilon_{\Delta t}$. We can observe how the error decreases when the timestep gets smaller, proportionally to $\mathcal{O}(\Delta t^2)$, until a point where the error flattens. Our assumption is that this happens when $\varepsilon_{\Delta t} < \varepsilon_\text{num}$, and after a certain point this $\varepsilon_\text{num}$ dominates the entire error. It is also remarkable to see how this point of flattening happens on smaller timesteps for increasing resolutions of the domain.
 
 As me mentioned before, the Taylor–Green vortex scenario has an analytical solution $u^*$, what allows us to obtain the exact error $\varepsilon_{u}$ of the solutions we obtained, as those are going to be of the form $u = u^* + \varepsilon_{u}$. To compute this error $\varepsilon_{u}$, we compute the root-mean-square error (RMSE) of the the velocity flow field, compared to the analytical solution as follows:  
 
@@ -129,19 +129,14 @@ As me mentioned before, the Taylor–Green vortex scenario has an analytical sol
     \text{RMSE} = \sqrt{\sum_{(i,j)} (u^*_{ij} - u_{ij})^2 }
 \end{equation}
 
-This is being plotted in Figure \ref{fig:RMSE_openfoam}, where once again we can observe the error decreasing proportionally to $\text{O}(\Delta t^2)$, showing once again a second order convergence in time. In this Figure is very visible the flattening of the error, and how it happens in different points for different resolutions of the domain. This is given that, in this case, the flattening occurs when $\varepsilon_{\Delta t} < \varepsilon_{\Delta x}$, as this time the spatial error is included. This plot also clearly shows how this spatial error decreases for higher domain resolutions, and gives a clear idea of the magnitude of this $\varepsilon_{\Delta x}$ in these scenarios. 
+This is being plotted in Figure \ref{fig:RMSE_openfoam}, where once again we can observe the error decreasing proportionally to $\mathcal{O}(\Delta t^2)$, showing once again a second order convergence in time. In this Figure is very visible the flattening of the error, and how it happens in different points for different resolutions of the domain. This is given that, in this case, the flattening occurs when $\varepsilon_{\Delta t} < \varepsilon_{\Delta x}$, as this time the spatial error is included. This plot also clearly shows how this spatial error decreases for higher domain resolutions, and gives a clear idea of the magnitude of this $\varepsilon_{\Delta x}$ in these scenarios. 
 
 
 \section{Calculix}
-\begin{itemize}
-    \item Small introduction to Calculix.
-    
-\end{itemize}
+CalculiX is an open-source finite element software suite primarily used for solving structural analysis problems. It is designed to simulate the behavior of mechanical and structural systems subjected to various loading conditions. CalculiX provides capabilities for linear and nonlinear static, dynamic, and thermal analyses. It supports a variety of element types, boundary conditions, and material models, making it suitable for a wide range of engineering simulations. In this section, we will overview the timestepping scheme implemented in the solver, and present the convergence study we performed, that displays a higher order convergence. 
 
 \subsection{Time stepping scheme}
-The only time-stepping scheme implemented in Calculix is the $\alpha$-method \cite{dhondt2017calculix}. The solver allows the user to select between a implicit or an explicit version of it, and allows to control the $\alpha$ parameter. Moreover, one can define a fixed timestep size, using the DIRECT clause. Now we will go through a brief overview of this method.
-
-Given a material point with displacement $\boldsymbol{u}$, velocity $\boldsymbol{v}$ and acceleration $\boldsymbol{a}$, we know that the acceleration and velocity are related as such $\boldsymbol{a} = \dot{\boldsymbol{v}}$. This yields to the following formula to obtain the next timestep values:
+The only time-stepping scheme implemented in Calculix is the $\alpha$-method \cite{dhondt2017calculix}. The solver allows the user to select between an implicit or an explicit version of it, and allows to control the $\alpha$ parameter. Moreover, one can define a fixed timestep size, using the DIRECT clause. To get an idea of how this method works, we can start with a given material point with displacement $\boldsymbol{u}$, velocity $\boldsymbol{v}$ and acceleration $\boldsymbol{a}$. We know that the acceleration and velocity are related as such $\boldsymbol{a} = \dot{\boldsymbol{v}}$, and this yields to the following formula to obtain the next timestep values:
 \begin{equation}
     \boldsymbol{v}_{n+1} = \boldsymbol{v}_n + \int_{t_n}^{t_{n+1}} \boldsymbol{a(\xi)} \text{d}\xi
 \end{equation}
@@ -170,17 +165,15 @@ Notice how the linear combinations can be different, so $2\beta \neq \gamma$. Th
 \end{align}
 This $\alpha$ parameter controls the high frequency dissipation, and in Calculix the value set by default is $\alpha=-0.05$.
 
-\subsection{Case study: perpendicular flap}
-\begin{itemize}
-\item Talk about the simulation that we performed, a perpendicular flap versus a constant force.
-\item Mention the scripts created to automatize this task, and to obtain the tip point value from the results.
-\item Comment on Figure \ref{fig:calculix_convergence}, that shows a higher order (between 1 and 2) of convergence. Mention how we compute the error, and how for values <1e-4 the outputed value is the same, meaning either that for lower timesteps the spatial discretization error governs, or that the solver can't achieve better accuracy bc of how values are stored (max of 6 decimal values, more likely given that the results are the exact same). 
-\end{itemize}
+\subsection{Convergence study}
+In this case, we simulated a solid elastic flap fixed to the floor. A constant force is applied perpendicular to the flap, which is initially resting, which makes it oscillate due to its elasticity. This scenario can be seen in further detail in the solid part of the preCICE perpendicular-flap tutorial \cite{perpendicularFlap} or in the code repository of this project.
+
+Given the oscillatory behaviour of the flap, we measured the displacement of the flap's tip over time and used this value for the convergence study. As before, we implemented a script to automatize the execution of the simulations and the post-processing of the output data. We defined a reference solution $\tilde{u}$ as with the OpenFOAM study, which is the one obtained with a $\Delta t = 4\times 10^{-4}$. This value was chosen given that for smaller values of $\Delta t$, the solution is exactly the same as $\tilde{u}$. This can be due to another error contribution governing the total error after this point, such as the spatial discretization error. Then, we plotted the absolute difference to the reference solution $|u - \tilde{u}|$ to observe how the error behaves relative to this solution. One can see in Figure \ref{fig:calculix_convergence} how the error decreases faster than $\mathcal{O}(\Delta t)$. With the obtained results, it is hard to argue if it follows a second-order convergence, but it is higher-order.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{resources/calculix_convergence_study.png}
-    \caption{TODO: improve this figure, by adding legend and nicer colors.}
+    \caption{TODO: .}
     \label{fig:calculix_convergence}
 \end{figure}
 
