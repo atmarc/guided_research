@@ -53,7 +53,7 @@ while interface.is_coupling_ongoing():
 
     precice_dt = interface.get_max_time_step_size()
     dt = min([solver_dt, precice_dt])
-    t += dt
+    print("Precice recieved dt: ", dt, "My t:", t)
 
     write_data[:, 0] = np.sin(1 + t) * F_max * vertices[:, 1] / H  # linearly increasing load
     write_data[:, 1] = 0
@@ -63,5 +63,9 @@ while interface.is_coupling_ongoing():
 
     if interface.requires_reading_checkpoint():
         pass
+
+    if interface.is_time_window_complete():
+        t += dt
+
 
 interface.finalize()
