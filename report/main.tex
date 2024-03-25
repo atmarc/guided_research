@@ -33,9 +33,11 @@
 
 \maketitle
 
-% \begin{abstract}
-%   This is a short abstract summarizing the main points of your article.
-% \end{abstract}
+\begin{abstract}
+    The accurate numerical simulation of physical phenomena is crucial in various scientific and engineering disciplines, and open-source solvers offer flexibility and accessibility to researchers and practitioners. A vital aspect of these solvers is the order of the time-stepping scheme employed to evolve the solution over time, as it significantly affects the error of the obtained solutions. This project investigates and verifies the order of different time-stepping methods implemented on various solvers. We focused on higher-order methods, which give better accuracy and help reduce the computational costs of obtaining a precise enough solution. To study the order of fluid-structure interaction (FSI) simulations using preCICE, we chose OpenFOAM and Calculix as the studied solvers, which are compatible with this coupling library. 
+
+    We verified the expected error convergence of second-order methods on both solvers using single-solver simulations and confirmed the correct convergence of first-order methods on FSI simulations. Moreover, we tested higher-order time-stepping schemes on FSI simulations and found an incoherent behaviour of the error. We followed by ruling out possible causes of this poor convergence and proposing possible solutions, making this work valuable for future projects aiming to obtain accurate FSI simulations in the preCICE environment.
+\end{abstract}
 
 \section{Introduction}
 \begin{itemize}
@@ -46,6 +48,22 @@
     \item Explain difference between preCICEv2 and preCICEv3.
     \item All the code accessible at repo: \url{https://github.com/atmarc/guided_research/}.
 \end{itemize}
+
+
+
+% The accurate numerical simulation of physical phenomena is crucial in various scientific and engineering disciplines. Open source solvers provide powerful tools for such simulations, offering flexibility and accessibility to researchers and practitioners. A key aspect of these solvers is the order of the time-stepping scheme employed to evolve the solution over time, as it has a great impact on the error. This project aims to investigate and verify the order of different time-stepping methods implemented on various solvers. We put special emphasis in higher-order methods, which give better accuracy and help reducing computational costs of to obtain a precice enough solution.
+
+
+
+% Motivation:
+
+% The choice of time-stepping order plays a fundamental role in the accuracy and efficiency of numerical simulations. Higher-order time-stepping methods have the potential to significantly enhance the convergence rate of numerical solutions compared to lower-order counterparts. Understanding the implications of time-stepping order on solver performance is essential for improving the reliability and computational efficiency of simulations across diverse application domains.
+
+% Importance of Higher Order Convergence: Relation to Solution Error.
+
+% Relation to Solution Error: 
+
+% The error in the numerical solution arises from various sources, including discretization errors, truncation errors, and round-off errors. The choice of time-stepping order directly influences the magnitude and propagation of these errors throughout the simulation. Higher-order time-stepping schemes typically yield reduced error accumulation per time step, leading to more accurate and reliable solutions, particularly over long integration periods.
 
 
 \section{OpenFOAM}
