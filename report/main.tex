@@ -96,10 +96,10 @@ OpenFOAM uses a sligtly different version of this method, by introducing a blend
 
 
 
-\subsection{Solver parameters}
-\begin{itemize}
-    \item Talk about the important parameters in the configuration, to obtain accurately enough results, as those where quite time consuming to find. For example, foamToVTK is not accurate enough, and was misleading at the beginning. Also mention the solver used.
-\end{itemize}
+% \subsection{Solver parameters}
+% \begin{itemize}
+%     \item Talk about the important parameters in the configuration, to obtain accurately enough results, as those where quite time consuming to find. For example, foamToVTK is not accurate enough, and was misleading at the beginning. Also mention the solver used.
+% \end{itemize}
 
 \subsection{Convergence study}
 
@@ -261,6 +261,13 @@ In Figure \ref{fig:fake-fluid} one can observe that the error decreases in a hig
 \subsection{Verification of fluid participant} \label{sec:fluid-part}
 With the aim of verifying the fluid participant of the FSI simulation, we ran several single-solver simulations, only taking the fluid part of the scenario. The tested case could be seen as a channel with an inverse cavity that stands out, following the geometry of the flap. From this experiments, we observed that this setup was unstable for a high Courant–Friedrichs–Lewy (CFL) number, which is defined as $\text{CFL} = \frac{u \Delta t}{\Delta x}$. In the FSI simulation of section \label{sec:FSI}, we computed cases with a high CFL number when we had large time-step sizes, which failed to converge in this test. With the aim of improving the stability of the simulation we tried initializing the velocity field with precomputed values of a simulation that reached a steady state.
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/fluid_participant_test.png}
+    \caption{TODO: }
+    \label{fig:fluid_test}
+\end{figure}
+
 Once we could obtain some stable simulations, we defined a time-dependent input velocity, so we could observe a decrease of the error when decreasing the time step size. Then, a convergence study of the error was performed, by running the same simulation with the Crank Nikolson scheme, and only varying the time-step size parameter. In Figure \ref{fig:fluid_test} we can observe the results of this study, showing how the error does not follow a higher order convergence. In fact, it's decreasing order is very similar than the one we observed in Figure \ref{fig:coupled_v2_v3} for the Crank Nikolson scheme. This showcases that the fluid solver was the source of the poor error convergence.
 
 
@@ -274,14 +281,16 @@ Once we could obtain some stable simulations, we defined a time-dependent input 
 
 
 \section{Conclusions and future work}
-\begin{itemize}
-    \item We showed how both solvers can achieve higher order convergence.
-    \item We built a pipeline to automatize running and plotting of solutions, for single and coupled case.
-    \item We made showed how first order convergence is reached in FSI, and how there is no difference between first and second order convergence.
-    \item We showed how for this specific scenario, OpenFOAM and Crank Nikolson do not reach second order convergence.
-    \item We verified the correct behaviour of the Calculix adapter.
-    \item Suggest trying it with other fluid solvers, or trying other scenarios with lower CFL number, but that is still time dependent (transient simulations).
-\end{itemize}
+
+In this study, we examined the convergence behavior of open-source solvers, specifically OpenFOAM and CalculiX, in single-solver and fluid-structure interaction (FSI) simulations, using the preCICE coupling library. To do so, we developed a comprehensive pipeline to automate simulation execution and analysis, facilitating efficient exploration of various solver configurations. This allowed us to perform systematic convergence studies and result comparison across different scenarios. 
+
+Our analysis yielded several key findings. Firstly, both OpenFOAM and CalculiX demonstrate the potential for achieving higher-order convergence in time-stepping schemes when used independently. Through convergence studies, we established that higher-order accuracy is attainable in both fluid dynamics and structural mechanics simulations, when suitable solver configurations and scenarios are employed.
+Moreover, we achieved a linear decrease in the error when using first-order timestepping methods on coupled simulations with preCICE. However, challenges arose in maintaining the higher-order in FSI simulations. Through meticulous analysis and verification tests, we identified the fluid participant as a major error source contributing to these discrepancies. Simultaneously, we verified the correct behaviour of the preCICE adapter for CalculiX. This reflected that the used perpendicular flap scenario was not adequate to achieve a higher-order convergence with OpenFOAM. Even though, we leave as future work the thorough testing of this setup utilizing other solvers, which provide different higher-order timestepping schemes that might be more robust than the Crank Nikolson. Exploring alternative physical configurations with lower CFL numbers would also be interesting, as it would provide better stability and facilitate the execution of convergence studies. Scenarios with finner spatial discretization could also help to observe a better error convergence, as the spatial error contribution would not be dominat until smaller scales. 
+
+Overall, this study offers valuable insights into the convergence behavior of open-source solvers, and serves as ground work for achieving more accurate coupled simulations.
+
+
+\pagebreak
 
 \printbibliography
 
