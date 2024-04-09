@@ -25,8 +25,8 @@
 
 \date{
     \small
-    \textbf{Advisor:} M.Sc. Benjamin Rodenberg \\
     \textbf{Supervisor:} Prof. Dr. Hans-Joachim Bungartz \\
+    \textbf{Advisor:} M.Sc. Benjamin Rodenberg \\
 }
 
 \begin{document}
@@ -34,72 +34,49 @@
 \maketitle
 
 \begin{abstract}
-    The accurate numerical simulation of physical phenomena is crucial in various scientific and engineering disciplines, and open-source solvers offer flexibility and accessibility to researchers and practitioners. A vital aspect of these solvers is the order of the time stepping scheme employed to evolve the solution over time, as it significantly affects the error of the obtained solutions. This project investigates and verifies the order of different time stepping methods implemented on various solvers. We focused on higher-order methods, which give better accuracy and help reduce the computational costs of obtaining a precise enough solution. To study the order of fluid-structure interaction (FSI) simulations using preCICE, we chose OpenFOAM and CalculiX as the studied solvers, which are compatible with this coupling library. 
+    The accurate numerical simulation of physical phenomena is crucial in various scientific and engineering disciplines, and open-source solvers offer flexibility and accessibility to research and practitioners. A vital aspect of these solvers is the order of the time stepping scheme employed to evolve the solution over time, as it significantly affects the error of the obtained solutions. This work investigates and verifies the order of different time stepping methods implemented on various solvers. We focused on higher-order methods, which give better accuracy and help reduce the computational costs of obtaining a precise enough solution. To inspect the order of fluid-structure interaction (FSI) simulations using preCICE, we chose OpenFOAM and CalculiX as the studied solvers, which are compatible with this coupling library. 
 
-    We verified the expected error convergence of second-order methods on both solvers using single-solver simulations and confirmed the correct convergence of first-order methods on FSI simulations. Moreover, we tested higher-order time stepping schemes on FSI simulations and found an incoherent behaviour of the error. We followed by ruling out possible causes of this poor convergence and proposing possible solutions, making this work valuable for future projects aiming to obtain accurate FSI simulations in the preCICE environment.
+    We observed a higher-order convergence when using second-order methods in single-solver simulations on both solvers and confirmed the correct convergence of first-order methods on FSI simulations. Moreover, we tested higher-order time stepping schemes on FSI simulations, which gave sub-linear error convergence. We followed by ruling out possible causes of this poor convergence and proposing possible solutions, making this work valuable for future projects aiming to obtain accurate FSI simulations in the preCICE environment.
 \end{abstract}
 
 \section{Introduction}
-\begin{itemize}
-    \item Introduction to coupling simulations (FSI) and to the preCICE library. 
-    \item Some brief motivation of performing a convergence study on the known solvers.
-    \item Talk somehow about higer timestepping schemes, and why/when is good to use them. Should you use a higher order timestepping scheme if it doesn't give good results? (No bc it is slower) 
-    \item Say we chose this two open source solvers because they are well known and well documented.
-    \item Explain that there is a new version of preCICE which we will also test.
-    \item All the code accessible at repo: \url{https://github.com/atmarc/guided_research/}.
-\end{itemize}
+In scientific and engineering simulations, the precise numerical representation of physical phenomena is crucial for advancing knowledge and solving practical challenges. Open-source solvers have emerged as indispensable tools, offering flexibility and accessibility to researchers and practitioners alike. These solvers offer different time stepping schemes, and selecting one to evolve the solution over time is a decision that profoundly influences the error of the obtained solutions. This project investigates and verifies various time stepping methods implemented on different open-solvers, focusing on higher-order schemes.
+    
+Higher-order methods not only promise enhanced accuracy but also hold the potential to mitigate computational costs, which is crucial for obtaining precise solutions within reasonable time frames. Our study analyses if these claims hold for two specific open-source solvers and presents scenarios where higher-order convergence can be achievable. 
 
+One can differentiate between single or multi-physics simulations. The first group target a specific domain, such as fluid dynamics, structural mechanics, heat transfer, or electromagnetics. The solvers of said simulations focus on solving equations specific to their respective domains and are often tailored to efficiently handle the complexities of that particular physics. On the other hand, multi-physics solvers integrate multiple physical domains into a single simulation framework. 
 
+We selected OpenFOAM \cite{weller1998tensorial} and CalculiX \cite{calculix-web} as our fluid mechanics and structural solvers, respectively, given that they are widely used in industry and research, renowned for their reliability and good documentation. Moreover, both are compatible with the multi-physics coupling library preCICE \cite{preCICEv2}, which allowed us to compute fluid-structure interaction (FSI) simulations using both solvers as black boxes. This way, we could combine fluid dynamics and structural mechanics solvers to predict the dynamic behavior of structures immersed in fluid flows.
 
-% The accurate numerical simulation of physical phenomena is crucial in various scientific and engineering disciplines. Open source solvers provide powerful tools for such simulations, offering flexibility and accessibility to researchers and practitioners. A key aspect of these solvers is the order of the time-stepping scheme employed to evolve the solution over time, as it has a great impact on the error. This project aims to investigate and verify the order of different time-stepping methods implemented on various solvers. We put special emphasis in higher-order methods, which give better accuracy and help reducing computational costs of to obtain a precice enough solution.
+In the subsequent sections, we show how higher-order convergence is achievable in single-solver simulations using second-order methods. Furthermore, we couple the two single-physics solvers in an FSI simulation and observe how a linear convergence can be achieved with first-order time stepping methods. Contrarily, we display how using a second-order method does not improve but worsens the error convergence.
 
-
-
-% Motivation:
-
-% The choice of time-stepping order plays a fundamental role in the accuracy and efficiency of numerical simulations. Higher-order time-stepping methods have the potential to significantly enhance the convergence rate of numerical solutions compared to lower-order counterparts. Understanding the implications of time-stepping order on solver performance is essential for improving the reliability and computational efficiency of simulations across diverse application domains.
-
-% Importance of Higher Order Convergence: Relation to Solution Error.
-
-% Relation to Solution Error: 
-
-% The error in the numerical solution arises from various sources, including discretization errors, truncation errors, and round-off errors. The choice of time-stepping order directly influences the magnitude and propagation of these errors throughout the simulation. Higher-order time-stepping schemes typically yield reduced error accumulation per time step, leading to more accurate and reliable solutions, particularly over long integration periods.
-
+For transparency and reproducibility, all code utilized in this project is accessible via our repository at: \url{https://github.com/atmarc/guided_research}. 
 
 \section{OpenFOAM}
-
-OpenFOAM is an open-source computational fluid dynamics (CFD) software package widely used for simulating and analyzing complex fluid flow problems. Its solver modules employ finite volume methods to numerically solve the Navier-Stokes equations, making it a versatile tool for simulating fluid dynamics in various engineering and scientific applications. In this section we will explain the convergence analysis performed to verify that it has a higher order convergence in time.   
+OpenFOAM is an open-source computational fluid dynamics (CFD) software package widely used for simulating and analyzing complex fluid flow problems. Its solver modules employ finite volume methods to numerically solve the Navier-Stokes equations, making it a versatile tool for simulating fluid dynamics in various engineering and scientific applications. In this section, we will explain the convergence analysis performed to verify that it has a higher-order convergence in time.   
 
 \subsection{Time stepping schemes}\label{sec:euler}
-This solver offers various time stepping schemes, and we focused in two for our analysis. The first one is the Euler implicit scheme, as is usually the default one. Given the following partial differential equation:
+This solver offers various time stepping schemes, and we focused on two for our analysis. The first one is the Euler implicit scheme. Given the following partial differential equation:
 
 \begin{equation}
     \frac{\partial u}{\partial t} = F(u, t)
 \end{equation}
-The Euler implicit scheme would discretize it as follows:
+the Euler implicit scheme would discretize it as follows:
 
 \begin{equation}
     \frac{u^{n+1} - u^n}{\Delta t} = {F}(u^{n+1}, t^{n+1})
 \end{equation}
-This is a first order method, that is quite stable, reason why it is usually the default choice. For the purpouse of this study, we also chose a second order scheme, this being the Crank Nikolson method \cite{crank1947practical}. This scheme is a combination of an explicit and an implicit Euler step, leading to a second order convergence in time. This method would discretize the previous PDE as: 
+it is a first-order method that is relatively stable, which is why it is usually the default choice. For the purpose of this study, we also chose a second-order scheme, this being the Crank-Nicolson method \cite{crank1947practical}. This scheme combines an explicit and an implicit Euler step, leading to a second-order convergence in time. This method would discretize the previous PDE as: 
 
 \begin{equation}
     \frac{u^{n+1} - u^n}{\Delta t} = \frac{1}{2} \left[F(u^n, t^n) +  F(u^{n+1}, t^{n+1}) \right]
 \end{equation}
-
-
-OpenFOAM uses a sligtly different version of this method, by introducing a blending coefficient $\theta$ between the Euler implicit method and the Crank Nikolson method. If $\theta = 0$ then we obtain the implicit Euler method, and if $\theta = 1$ then it's Crank Nikolson. For stability, the value $\theta = 0.9$ is recomended in their documentation.
+OpenFOAM uses a slightly different version of this method by introducing a blending coefficient $\theta$ between the Euler implicit and Crank-Nicolson methods. If $\theta = 0$, then we obtain the implicit Euler method, and if $\theta = 1$, then it's Crank-Nicolson. For stability, the value $\theta = 0.9$ is recommended in their documentation.
 
 \begin{equation}
     \frac{u^{n+1} - u^n}{\Delta t} = \frac{\theta}{2} F(u^{n}, t^{n}) + \left( 1 - \frac{\theta}{2} \right) F(u^{n+1}, t^{n+1})
 \end{equation}
 
-
-
-% \subsection{Solver parameters}
-% \begin{itemize}
-%     \item Talk about the important parameters in the configuration, to obtain accurately enough results, as those where quite time consuming to find. For example, foamToVTK is not accurate enough, and was misleading at the beginning. Also mention the solver used.
-% \end{itemize}
 
 \subsection{Convergence study}
 
@@ -114,12 +91,12 @@ where $u$ and $v$ are the horizontal and vertical velocities respectively, $p$ i
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{resources/taylor-green-vortex.png}
-    \caption{}
+    \caption{TODO}
     \label{fig:taylor-green}
 \end{figure}
 
 We implemented a program that computes the initial velocity for this setup, and writes it into the OpenFOAM configuration. We also wrote a script to automatize the configuration and execution of different setups with varying parameters, so we can perform several experiments automatically.
-To observe the behaviour of the error, we did several executions of our setup case, fixing all the parameters (grid size, initial velocity, solver tolerances etc.) and changing the time-step size. On our analysis, we mainly focused on the velocity profile.
+To observe the behaviour of the error, we did several executions of our setup case, fixing all the parameters (grid size, initial velocity, solver tolerances etc.) and changing the time step size. On our analysis, we mainly focused on the velocity profile.
 
 In a simulation, there are several elements that contribute to the error $\varepsilon_{u}$. In this study, we were only interested in the error contribution of the time discretization scheme $\varepsilon_{\Delta t}$ to verify the order of the scheme. We assume that the error is formed by $\varepsilon_u = \varepsilon_{\Delta t} + \varepsilon_{\Delta x} + \varepsilon_\text{num}$, where $\varepsilon_{\Delta x}$ is the spatial discretization error, and $\varepsilon_\text{num}$ is the error introduced by numerical errors, and other factors. We know that $\varepsilon_{\Delta x}$ is related to the grid size, so we can assume that is constant among the experiments with the same grid size.
 
@@ -158,7 +135,7 @@ This is being plotted in Figure \ref{fig:RMSE_openfoam}, where once again we can
 CalculiX is an open-source finite element software suite primarily used for solving structural analysis problems. It is designed to simulate the behavior of mechanical and structural systems subjected to various loading conditions. CalculiX provides capabilities for linear and nonlinear static, dynamic, and thermal analyses. It supports a variety of element types, boundary conditions, and material models, making it suitable for a wide range of engineering simulations. In this section, we will overview the timestepping scheme implemented in the solver, and present the convergence study we performed, that displays a higher order convergence. 
 
 \subsection{Time stepping scheme}\label{sec:alpha}
-The only time-stepping scheme implemented in CalculiX is the $\alpha$-method \cite{dhondt2017calculix}. The solver allows the user to select between an implicit or an explicit version of it, and allows to control the $\alpha$ parameter. Moreover, one can define a fixed timestep size, using the DIRECT clause. To get an idea of how this method works, we can start with a given material point with displacement $\boldsymbol{u}$, velocity $\boldsymbol{v}$ and acceleration $\boldsymbol{a}$. We know that the acceleration and velocity are related as such $\boldsymbol{a} = \dot{\boldsymbol{v}}$, and this yields to the following formula to obtain the next timestep values:
+The only time stepping scheme implemented in CalculiX is the $\alpha$-method \cite{dhondt2017calculix}. The solver allows the user to select between an implicit or an explicit version of it, and allows to control the $\alpha$ parameter. Moreover, one can define a fixed timestep size, using the DIRECT clause. To get an idea of how this method works, we can start with a given material point with displacement $\boldsymbol{u}$, velocity $\boldsymbol{v}$ and acceleration $\boldsymbol{a}$. We know that the acceleration and velocity are related as such $\boldsymbol{a} = \dot{\boldsymbol{v}}$, and this yields to the following formula to obtain the next timestep values:
 \begin{equation}
     \boldsymbol{v}^{n+1} = \boldsymbol{v}^n + \int_{t^n}^{t^{n+1}} \boldsymbol{a(\xi)} \text{d}\xi
 \end{equation}
@@ -227,27 +204,27 @@ We have observed on the previous sections how a higher order convergence is achi
 
 The flap oscillates due to the fluid pressure building up on its surface during a limited period, given by its initial resting position. The oscillations dampen until the entire system reaches a steady state. We will quantify the error of the simulation by measuring the displacement of the tip of the flap at time $t=1s$, which is still in oscilatory behaviour. We wrote specific scripts once again to automatize this task, utilizing similar solver parameters than in the previous sections. 
 
-We ran multiple simulations setting the same timestep size on both solvers, and on the preCICE configuration. We also used both the Euler and Crank Nikolson schemes, introduced in section \ref{sec:euler} for the fluid solver, to observe the difference on their error convergence. Moreover, we ran tests with the stable version 2 and the newest version 3 of preCICE, to observe if the update of the library affected the overall error. 
+We ran multiple simulations setting the same timestep size on both solvers, and on the preCICE configuration. We also used both the Euler and Crank-Nicolson schemes, introduced in section \ref{sec:euler} for the fluid solver, to observe the difference on their error convergence. Moreover, we ran tests with the stable version 2 and the newest version 3 of preCICE, to observe if the update of the library affected the overall error. 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{resources/coupled_v2_v3_results.png}
     \caption{TODO: add title and maybe convergence lines}
     \label{fig:coupled_v2_v3}
 \end{figure}
-In Figure \ref{fig:coupled_v2_v3} we can observe the results of this experiments. One can observe how using the Euler method, we can achieve a first order convergence of the error. On the other side, we see how the Crank Nikolson method performs poorly in this scenario, giving a worse convergence than the first-order method. It is relevant to mention how the different versions of the code seem to give different results, even though it does not affect the convergence behaviour.  
+In Figure \ref{fig:coupled_v2_v3} we can observe the results of this experiments. One can observe how using the Euler method, we can achieve a first order convergence of the error. On the other side, we see how the Crank-Nicolson method performs poorly in this scenario, giving a worse convergence than the first-order method. It is relevant to mention how the different versions of the code seem to give different results, even though it does not affect the convergence behaviour.  
 
 The reasons for the poor convergence of the second-order method can be various. preCICE is a complex environment with many moving many pieces. Each solver has its own adapter, that enables it to be a participant in a partitioned multi-physics simulation. This translates in many possible sources of error. In the next sections we rule out possible sources of error, and propose possible elements that could cause it. 
 
 
 \section{Possible sources of error}
-This section aims to identify and address the potential sources of error we encountered while coupling OpenFOAM and CalculiX using the preCICE library. On section \ref{sec:FSI} we observed that using a second-order time-stepping method on the fluid solver, gave worse error convergence than using a first-order scheme, despite that both single solver analysis showed higher-order convergences. There are many possible sources of error in this case, starting by the preCICE components. To make sure that the component to blame is not the solid participant, we will test its correct behaviour while coupled to a dummy implementation of the fluid participant. Moreover, we will also test the fluid participant in section \ref{sec:fluid-part}.
+This section aims to identify and address the potential sources of error we encountered while coupling OpenFOAM and CalculiX using the preCICE library. On section \ref{sec:FSI} we observed that using a second-order time stepping method on the fluid solver, gave worse error convergence than using a first-order scheme, despite that both single solver analysis showed higher-order convergences. There are many possible sources of error in this case, starting by the preCICE components. To make sure that the component to blame is not the solid participant, we will test its correct behaviour while coupled to a dummy implementation of the fluid participant. Moreover, we will also test the fluid participant in section \ref{sec:fluid-part}.
 % TODO: finish this text
 
 
 \subsection{Verification of CalculiX adapter}
 To interact with a participant solver, preCICE makes use of an adapter, which is an interface between the solver and the preCICE library. To verify the correct behaviour of one of this adapters, one can use a dummy implementation of another participant that only returns some preset magnitudes, and couple both using preCICE.
 
-To test the correct behaviour of the CalculiX adapter \cite{yau2016conjugate}, we implemented a fake fluid script that could be coupled with CalculiX using preCICE. This fake fluid participant applied a force on the flap with the direction of the positive x axis, substituting what the OpenFOAM solver would produce on the FSI interaction. In this scenario, the returned force by the fake fluid was not constant but varying over time, following $f^n = f_{max} \sin(t^n + \phi)$ on the tip, and decreasing linearly over the height of the flap until reaching a 0 magnitude in the bottom. Our aim was to approximate the forces applied by the fluid on the flap, while making them time dependent to observe a pronounced decrease of the error with a higher-order time stepping scheme.
+To test the correct behaviour of the CalculiX adapter \cite{yau2016conjugate}, we implemented a fake fluid script that could be coupled with CalculiX using preCICE. This fake fluid \cite{pullrequestfake-fluid} participant applied a force on the flap with the direction of the positive x axis, substituting what the OpenFOAM solver would produce on the FSI interaction. In this scenario, the returned force by the fake fluid was not constant but varying over time, following $f^n = f_{max} \sin(t^n + \phi)$ on the tip, and decreasing linearly over the height of the flap until reaching a 0 magnitude in the bottom. Our aim was to approximate the forces applied by the fluid on the flap, while making them time dependent to observe a pronounced decrease of the error with a higher-order time stepping scheme.
 
 \begin{figure}[!ht]
     \centering
@@ -259,16 +236,9 @@ To test the correct behaviour of the CalculiX adapter \cite{yau2016conjugate}, w
 In Figure \ref{fig:fake-fluid} one can observe that the error decreases in a higher-order fashion, as previously observed by the single solver study. This rules out this adapter as the possible source of error, as it showed to give a good error convergence.
 
 \subsection{Verification of fluid participant} \label{sec:fluid-part}
-With the aim of verifying the fluid participant of the FSI simulation, we ran several single-solver simulations, only taking the fluid part of the scenario. The tested case could be seen as a channel with an inverse cavity that stands out, following the geometry of the flap. From this experiments, we observed that this setup was unstable for a high Courant–Friedrichs–Lewy (CFL) number, which is defined as $\text{CFL} = \frac{u \Delta t}{\Delta x}$. In the FSI simulation of section \label{sec:FSI}, we computed cases with a high CFL number when we had large time-step sizes, which failed to converge in this test. With the aim of improving the stability of the simulation we tried initializing the velocity field with precomputed values of a simulation that reached a steady state.
+With the aim of verifying the fluid participant of the FSI simulation, we ran several single-solver simulations, only taking the fluid part of the scenario. The tested case could be seen as a channel with an inverse cavity that stands out, following the geometry of the flap. From this experiments, we observed that this setup was unstable for a high Courant–Friedrichs–Lewy (CFL) number, which is defined as $\text{CFL} = \frac{u \Delta t}{\Delta x}$. In the FSI simulation of section \label{sec:FSI}, we computed cases with a high CFL number when we had large time step sizes, which failed to converge in this test. With the aim of improving the stability of the simulation we tried initializing the velocity field with precomputed values of a simulation that reached a steady state.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{resources/fluid_participant_test.png}
-    \caption{TODO: }
-    \label{fig:fluid_test}
-\end{figure}
-
-Once we could obtain some stable simulations, we defined a time-dependent input velocity, so we could observe a decrease of the error when decreasing the time step size. Then, a convergence study of the error was performed, by running the same simulation with the Crank Nikolson scheme, and only varying the time-step size parameter. In Figure \ref{fig:fluid_test} we can observe the results of this study, showing how the error does not follow a higher order convergence. In fact, it's decreasing order is very similar than the one we observed in Figure \ref{fig:coupled_v2_v3} for the Crank Nikolson scheme. This showcases that the fluid solver was the source of the poor error convergence.
+Once we could obtain some stable simulations, we defined a time-dependent input velocity, so we could observe a decrease of the error when decreasing the time step size. Then, a convergence study of the error was performed, by running the same simulation with the Crank-Nicolson scheme, and only varying the time step size parameter. In Figure \ref{fig:fluid_test} we can observe the results of this study, showing how the error does not follow a higher order convergence. In fact, it's decreasing order is very similar than the one we observed in Figure \ref{fig:coupled_v2_v3} for the Crank-Nicolson scheme. This showcases that the fluid solver was the source of the poor error convergence.
 
 
 % \section{OpenFOAM Adapter?}
@@ -284,8 +254,8 @@ Once we could obtain some stable simulations, we defined a time-dependent input 
 
 In this study, we examined the convergence behavior of open-source solvers, specifically OpenFOAM and CalculiX, in single-solver and fluid-structure interaction (FSI) simulations, using the preCICE coupling library. To do so, we developed a comprehensive pipeline to automate simulation execution and analysis, facilitating efficient exploration of various solver configurations. This allowed us to perform systematic convergence studies and result comparison across different scenarios. 
 
-Our analysis yielded several key findings. Firstly, both OpenFOAM and CalculiX demonstrate the potential for achieving higher-order convergence in time-stepping schemes when used independently. Through convergence studies, we established that higher-order accuracy is attainable in both fluid dynamics and structural mechanics simulations, when suitable solver configurations and scenarios are employed.
-Moreover, we achieved a linear decrease in the error when using first-order timestepping methods on coupled simulations with preCICE. However, challenges arose in maintaining the higher-order in FSI simulations. Through meticulous analysis and verification tests, we identified the fluid participant as a major error source contributing to these discrepancies. Simultaneously, we verified the correct behaviour of the preCICE adapter for CalculiX. This reflected that the used perpendicular flap scenario was not adequate to achieve a higher-order convergence with OpenFOAM. Even though, we leave as future work the thorough testing of this setup utilizing other solvers, which provide different higher-order timestepping schemes that might be more robust than the Crank Nikolson. Exploring alternative physical configurations with lower CFL numbers would also be interesting, as it would provide better stability and facilitate the execution of convergence studies. Scenarios with finner spatial discretization could also help to observe a better error convergence, as the spatial error contribution would not be dominat until smaller scales. 
+Our analysis yielded several key findings. Firstly, both OpenFOAM and CalculiX demonstrate the potential for achieving higher-order convergence in time stepping schemes when used independently. Through convergence studies, we established that higher-order accuracy is attainable in both fluid dynamics and structural mechanics simulations, when suitable solver configurations and scenarios are employed.
+Moreover, we achieved a linear decrease in the error when using first-order timestepping methods on coupled simulations with preCICE. However, challenges arose in maintaining the higher-order in FSI simulations. Through meticulous analysis and verification tests, we identified the fluid participant as a major error source contributing to these discrepancies. Simultaneously, we verified the correct behaviour of the preCICE adapter for CalculiX. This reflected that the used perpendicular flap scenario was not adequate to achieve a higher-order convergence with OpenFOAM. Even though, we leave as future work the thorough testing of this setup utilizing other solvers, which provide different higher-order timestepping schemes that might be more robust than the Crank-Nicolson. Exploring alternative physical configurations with lower CFL numbers would also be interesting, as it would provide better stability and facilitate the execution of convergence studies. Scenarios with finner spatial discretization could also help to observe a better error convergence, as the spatial error contribution would not be dominat until smaller scales. 
 
 Overall, this study offers valuable insights into the convergence behavior of open-source solvers, and serves as ground work for achieving more accurate coupled simulations.
 
