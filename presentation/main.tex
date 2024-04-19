@@ -90,22 +90,47 @@
 
 \subsection{Motivation}
 \begin{frame}{Motivation}
+    \vspace*{\fill}
+    \begin{itemize}
+        \large
+        \setlength\itemsep{20pt}
+        \item Simulations of physical phenomena are useful in many fields.
+        \pause
+        \item Can we reduce the error of solutions?
+        \pause
+        \item Higher order of a numerical method $\implies$ higher precision?
+        \pause
+        \item How does this error behave when we couple simulations?
+    \end{itemize}
+    \vspace*{\fill}
 \end{frame}
 
 \subsection{Open-Source solvers}
 \begin{frame}{Open-source solvers}
-\vspace*{\fill}
+    \vspace{35pt}
     \begin{figure}
         \centering
         \includegraphics[width=0.9\textwidth]{resources/preCICE_graphic.png}
         \caption{Diagram showing setup for coupling simulations with preCICE library.}
         \label{fig:open-source}
     \end{figure}
+    \small
+    \vspace{20pt}
+    \hspace{210pt} Source: https://precice.org
 % \vspace*{\fill}
 \end{frame}
 
 \subsection{Time stepping schemes}
 \begin{frame}{Time stepping schemes}
+\vspace{10pt}
+
+We focus on temporal discretization error $\varepsilon_{\Delta t}$.
+\vspace{10pt}
+
+Second-order time stepping schemes $\rightarrow$ $\varepsilon_{\Delta t}$ decreases $\mathcal{O}(\Delta t^2)$. \\
+\vspace{10pt}
+
+\pause
 When solving a PDE of the form:
 \begin{equation}
     \frac{\partial u}{\partial t} = F(u, t)
@@ -114,26 +139,50 @@ we need to discretize the time-derivative. Easiest way is the Euler explicit met
 \begin{equation}
     \frac{u^{n+1} - u^n}{\Delta t} = {F}(u^{n}, t^{n})
 \end{equation}
-
-\vspace{10pt}
-
-We focus on second-order time stepping schemes $\rightarrow$ temporal discretization error $\varepsilon_{\Delta t}$ decreases $\mathcal{O}(\Delta t^2)$. \\
-% \vspace{10pt}
-% For OpenFOAM: Crank-Nicolson method \\
-% \vspace{10pt}
-% For CalculiX: alpha method
-
-
-
 \end{frame}
+
+\begin{frame}{Time stepping schemes}
+\vspace{10pt}
+\large
+\textbf{OpenFOAM}
+\normalsize
+\vspace{10pt}
+\begin{itemize}
+    \item Implicit Euler (1st order):
+    \begin{equation}
+        \frac{u^{n+1} - u^n}{\Delta t} = \frac{1}{2} \left[F(u^n, t^n) +  F(u^{n+1}, t^{n+1}) \right]
+    \end{equation}
+    \item Crank-Nicolson (2nd order): 
+    \begin{equation}
+        \frac{u^{n+1} - u^n}{\Delta t} = \frac{\theta}{2} F(u^{n}, t^{n}) + \left( 1 - \frac{\theta}{2} \right) F(u^{n+1}, t^{n+1})
+    \end{equation}
+
+\end{itemize}
+
+\pause
+\large
+\textbf{CalculiX}
+\normalsize
+\vspace{10pt}
+\begin{itemize}
+    \item Implicit $\alpha$-method (2nd order):
+    % \begin{equation}
+    % \end{equation}
+    \begin{gather}
+        \boldsymbol{v}^{n+1} = \boldsymbol{v}^n + \Delta t \left[ (1 - \gamma) \boldsymbol{a}^n + \gamma \boldsymbol{a}^{n+1} \right] \\
+        \boldsymbol{u}^{n+1} = \boldsymbol{u}^n + \Delta t \boldsymbol{v}^n + \frac{1}{2} (\Delta t)^2 \left[ (1 - 2\beta) \boldsymbol{a}^n + 2\beta \boldsymbol{a}^{n+1} \right]
+    \end{gather} 
+\end{itemize}    
+\end{frame}
+
+
 
 \section{OpenFOAM}
 \begin{frame}{OpenFOAM}
+\vspace{10pt}
 
 The error has the form $\varepsilon_u = \varepsilon_{\Delta t} + \varepsilon_{\Delta x} + \varepsilon_\text{num}$.
 \vspace{10pt}
-
-We use Crank-Nicolson time stepping method.
 
 \vspace*{\fill}
 
@@ -145,7 +194,7 @@ We use Crank-Nicolson time stepping method.
 \end{frame}
 
 \begin{frame}{OpenFOAM - convergence study}
-\vspace*{\fill}
+\vspace{15pt}
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -168,14 +217,13 @@ We use Crank-Nicolson time stepping method.
     \end{subfigure}
     \label{fig:figures}
   \end{figure}
-
-
-
 \end{frame}
 
 \section{CalculiX}
 \begin{frame}{CalculiX}
+\vspace{10pt}
 We use the $\alpha$-method as time stepping scheme.
+\vspace{10pt}
 
 \begin{figure}[!ht]
     \centering
@@ -206,6 +254,7 @@ We use the $\alpha$-method as time stepping scheme.
 \end{frame}
 
 \begin{frame}{FSI Simulation - convergence study}
+    \vspace{15pt}
     \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/coupled_v2_v3_results.png}
@@ -216,9 +265,9 @@ We use the $\alpha$-method as time stepping scheme.
 
 \section{Sources of error}
 \begin{frame}{Verification of CalculiX adapter}
+\vspace{5pt}
 We coupled the CalculiX adapter with a fake-fluid participant that applied a force $f^n = f_{max} \sin(t^n + \phi)$ on the tip.
-
-\vspace*{\fill}
+\vspace{5pt}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.57\textwidth]{resources/fake_fluid.png}
@@ -228,22 +277,40 @@ We coupled the CalculiX adapter with a fake-fluid participant that applied a for
 \end{frame}
 
 \begin{frame}{Verification of fluid participant}
-    We ran the fluid-participant as a single-solver scenario and found: 
+    % \vspace{5pt}
     \begin{itemize}
-        \item Difficult convergence due to high CFL numbers.
-        \item 
+        \setlength\itemsep{10pt}
+        \item Single-solver simulations with fluid participant. 
+        \item Hard to convergence due to high CFL numbers.
+        \item Precomputed initial conditions increased stability.
+        \item Time variable inflow conditions.
+        \item Sublinear error convergence.
     \end{itemize}
+    \vspace{5pt}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/test_fluid_participant.png}
+    \end{figure}
 \end{frame}
 
 \section{Conclusions}
 \begin{frame}{Conclusions and future work}
+    \vspace{30pt}
     \begin{itemize}
+        \setlength\itemsep{10pt}
         \item Does it make sense to use second order methods? Yes, but not always.
-        \vspace{15pt}
-        \item Single-solver simulations showed how CalculiX and OpenFOAM can reach higher-order convergence.
-        \vspace{15pt}
-        \item 
-        
+        \pause
+        \item CalculiX and OpenFOAM can reach higher-order convergence.
+        \pause
+        \item Linear convergence error on FSI simulation achievable.
+        \pause
+        \item CalculiX adapter maintains error convergence. OpenFOAM adapter?
+        \pause
+        \item Try different setups and different numerical methods.
+        \pause
+        \item This works offers some insights in the error behaviour.
+        \pause
+        \item Useful for researchers surrounding preCICE. 
     \end{itemize}
 
     

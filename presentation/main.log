@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.2.29)  18 APR 2024 16:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.2.29)  19 APR 2024 23:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -987,157 +987,202 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 13.67995pt on input line 89.
  [2
 
-] [3
-
 ]
-<resources/preCICE_graphic.png, id=88, 1141.26375pt x 373.99725pt>
-File: resources/preCICE_graphic.png Graphic file (type png)
-<use resources/preCICE_graphic.png>
-Package pdftex.def Info: resources/preCICE_graphic.png  used on input line 105.
-(pdftex.def)             Requested size: 299.0934pt x 98.01309pt.
- [4
-
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/preCICE_graphic.png>]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 128.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 106.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 128.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 106.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 128.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 106.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 128.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 106.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 128.
+(Font)              <12> on input line 106.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 128.
+(Font)              <8> on input line 106.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 128.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 128.
+(Font)              <6> on input line 106.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 128.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [5
+) [3
 
-] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [6
+] [4
+
+] [5
+
+] [6
 
 ]
-<resources/taylor-green-vortex.png, id=117, 389.0535pt x 313.77225pt>
-File: resources/taylor-green-vortex.png Graphic file (type png)
-<use resources/taylor-green-vortex.png>
-Package pdftex.def Info: resources/taylor-green-vortex.png  used on input line 145.
-(pdftex.def)             Requested size: 166.16412pt x 134.00975pt.
+<resources/preCICE_graphic.png, id=109, 1141.26375pt x 373.99725pt>
+File: resources/preCICE_graphic.png Graphic file (type png)
+<use resources/preCICE_graphic.png>
+Package pdftex.def Info: resources/preCICE_graphic.png  used on input line 121.
+(pdftex.def)             Requested size: 299.0934pt x 98.01309pt.
  [7
 
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/taylor-green-vortex.png>]
-<resources/ref_error_openfoam.png, id=126, 432.4155pt x 317.38576pt>
-File: resources/ref_error_openfoam.png Graphic file (type png)
-<use resources/ref_error_openfoam.png>
-Package pdftex.def Info: resources/ref_error_openfoam.png  used on input line 174.
-(pdftex.def)             Requested size: 162.84267pt x 119.52303pt.
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/preCICE_graphic.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 174.
+(Font)              <10> on input line 142.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 174.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.69998pt on input line 174.
+(Font)              <7> on input line 142.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 142.
+ [8
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+] [9
 
- []
+] [10
 
+] [11
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-
- []
-
-<resources/analytic_error_openfoam.png, id=127, 431.81325pt x 319.79475pt>
-File: resources/analytic_error_openfoam.png Graphic file (type png)
-<use resources/analytic_error_openfoam.png>
-Package pdftex.def Info: resources/analytic_error_openfoam.png  used on input line 174.
-(pdftex.def)             Requested size: 162.84267pt x 120.601pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-
- []
-
-[8
-
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/ref_error_openfoam.png> </home/marc/tum/guided_research/guided_research_repo/presentation/resources/analytic_error_openfoam.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [9
+] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [12
 
 ]
-<resources/calculix_convergence_study.png, id=158, 430.60875pt x 316.18124pt>
+<resources/taylor-green-vortex.png, id=159, 389.0535pt x 313.77225pt>
+File: resources/taylor-green-vortex.png Graphic file (type png)
+<use resources/taylor-green-vortex.png>
+Package pdftex.def Info: resources/taylor-green-vortex.png  used on input line 194.
+(pdftex.def)             Requested size: 166.16412pt x 134.00975pt.
+ [13
+
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/taylor-green-vortex.png>]
+<resources/ref_error_openfoam.png, id=168, 432.4155pt x 317.38576pt>
+File: resources/ref_error_openfoam.png Graphic file (type png)
+<use resources/ref_error_openfoam.png>
+Package pdftex.def Info: resources/ref_error_openfoam.png  used on input line 220.
+(pdftex.def)             Requested size: 162.84267pt x 119.52303pt.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 5.69998pt on input line 220.
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+
+ []
+
+<resources/analytic_error_openfoam.png, id=169, 431.81325pt x 319.79475pt>
+File: resources/analytic_error_openfoam.png Graphic file (type png)
+<use resources/analytic_error_openfoam.png>
+Package pdftex.def Info: resources/analytic_error_openfoam.png  used on input line 220.
+(pdftex.def)             Requested size: 162.84267pt x 120.601pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+
+ []
+
+
+Overfull \vbox (3.82053pt too high) detected at line 220
+ []
+
+[14
+
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/ref_error_openfoam.png> </home/marc/tum/guided_research/guided_research_repo/presentation/resources/analytic_error_openfoam.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [15
+
+]
+<resources/calculix_convergence_study.png, id=200, 430.60875pt x 316.18124pt>
 File: resources/calculix_convergence_study.png Graphic file (type png)
 <use resources/calculix_convergence_study.png>
-Package pdftex.def Info: resources/calculix_convergence_study.png  used on input line 193.
+Package pdftex.def Info: resources/calculix_convergence_study.png  used on input line 241.
 (pdftex.def)             Requested size: 166.16412pt x 122.01237pt.
 
-Underfull \hbox (badness 1454) in paragraph at lines 193--193
+Underfull \hbox (badness 1454) in paragraph at lines 241--241
 []\T1/phv/b/n/9 (a) |\T1/phv/m/n/8 Con-ver-gence study, show-ing higher-order
  []
 
-<resources/elastic-flap.png, id=159, 272.217pt x 262.581pt>
+<resources/elastic-flap.png, id=201, 272.217pt x 262.581pt>
 File: resources/elastic-flap.png Graphic file (type png)
 <use resources/elastic-flap.png>
-Package pdftex.def Info: resources/elastic-flap.png  used on input line 193.
+Package pdftex.def Info: resources/elastic-flap.png  used on input line 241.
 (pdftex.def)             Requested size: 116.31691pt x 112.19844pt.
-[10
+[16
 
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/calculix_convergence_study.png> </home/marc/tum/guided_research/guided_research_repo/presentation/resources/elastic-flap.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [11
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/calculix_convergence_study.png> </home/marc/tum/guided_research/guided_research_repo/presentation/resources/elastic-flap.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [17
 
 ]
-<resources/FSI_small.png, id=181, 567.3195pt x 374.5995pt>
+<resources/FSI_small.png, id=222, 567.3195pt x 374.5995pt>
 File: resources/FSI_small.png Graphic file (type png)
 <use resources/FSI_small.png>
-Package pdftex.def Info: resources/FSI_small.png  used on input line 206.
+Package pdftex.def Info: resources/FSI_small.png  used on input line 254.
 (pdftex.def)             Requested size: 149.54669pt x 98.74252pt.
-<resources/FSI_big.png, id=182, 750.4035pt x 426.393pt>
+<resources/FSI_big.png, id=223, 750.4035pt x 426.393pt>
 File: resources/FSI_big.png Graphic file (type png)
 <use resources/FSI_big.png>
-Package pdftex.def Info: resources/FSI_big.png  used on input line 206.
+Package pdftex.def Info: resources/FSI_big.png  used on input line 254.
 (pdftex.def)             Requested size: 173.80602pt x 98.75798pt.
- [12
+ [18
 
  </home/marc/tum/guided_research/guided_research_repo/presentation/resources/FSI_small.png> </home/marc/tum/guided_research/guided_research_repo/presentation/resources/FSI_big.png>]
-<resources/coupled_v2_v3_results.png, id=192, 434.8245pt x 317.38576pt>
+<resources/coupled_v2_v3_results.png, id=233, 434.8245pt x 317.38576pt>
 File: resources/coupled_v2_v3_results.png Graphic file (type png)
 <use resources/coupled_v2_v3_results.png>
-Package pdftex.def Info: resources/coupled_v2_v3_results.png  used on input line 215.
+Package pdftex.def Info: resources/coupled_v2_v3_results.png  used on input line 264.
 (pdftex.def)             Requested size: 199.39897pt x 145.54398pt.
- [13
 
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/coupled_v2_v3_results.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [14
+Overfull \vbox (3.26352pt too high) detected at line 264
+ []
+
+[19
+
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/coupled_v2_v3_results.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [20
 
 ]
-<resources/fake_fluid.png, id=213, 431.211pt x 316.7835pt>
+<resources/fake_fluid.png, id=254, 431.211pt x 316.7835pt>
 File: resources/fake_fluid.png Graphic file (type png)
 <use resources/fake_fluid.png>
-Package pdftex.def Info: resources/fake_fluid.png  used on input line 228.
+Package pdftex.def Info: resources/fake_fluid.png  used on input line 277.
 (pdftex.def)             Requested size: 189.42953pt x 139.16281pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 228.
- [15
+(Font)              <9> on input line 277.
 
- </home/marc/tum/guided_research/guided_research_repo/presentation/resources/fake_fluid.png>] [16
+Overfull \vbox (7.38235pt too high) detected at line 277
+ []
 
-] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [17
+[21
 
-] [18
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/fake_fluid.png>]
+<resources/test_fluid_participant.png, id=265, 413.74574pt x 216.81pt>
+File: resources/test_fluid_participant.png Graphic file (type png)
+<use resources/test_fluid_participant.png>
+Package pdftex.def Info: resources/test_fluid_participant.png  used on input line 294.
+(pdftex.def)             Requested size: 166.16412pt x 87.07314pt.
+ [22
+
+ </home/marc/tum/guided_research/guided_research_repo/presentation/resources/test_fluid_participant.png>] (/home/marc/tum/guided_research/guided_research_repo/presentation/main.toc) [23
+
+] [24
+
+] [25
+
+] [26
+
+] [27
+
+] [28
+
+] [29
+
+] [30
 
 ]
 \tf@nav=\write8
@@ -1149,27 +1194,27 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@snm=\write10
 \openout10 = `main.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 321.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 321.
  (/home/marc/tum/guided_research/guided_research_repo/presentation/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 321.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 321.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FD39791900CCDBDE363B3E18F319A611;476.
+(rerunfilecheck)             Checksum: F751A2543935E2F236F9732CC8BBB51E;476.
  ) 
 Here is how much of TeX's memory you used:
- 27794 strings out of 483057
- 573830 string characters out of 5962301
- 871950 words of memory out of 5000000
- 42083 multiletter control sequences out of 15000+600000
- 597324 words of font info for 89 fonts, out of 8000000 for 9000
+ 27908 strings out of 483057
+ 575697 string characters out of 5962301
+ 876963 words of memory out of 5000000
+ 42158 multiletter control sequences out of 15000+600000
+ 613247 words of font info for 107 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 66i,17n,96p,835b,1128s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /home/marc/tum/guided_research/guided_research_repo/presentation/main.pdf (18 pages, 1824854 bytes).
+ 66i,17n,96p,835b,1132s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on /home/marc/tum/guided_research/guided_research_repo/presentation/main.pdf (30 pages, 1912108 bytes).
 PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
- 170 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 414 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 175 words of extra memory for PDF output out of 10000 (max. 10000000)
 
